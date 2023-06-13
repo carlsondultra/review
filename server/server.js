@@ -3,6 +3,11 @@ const express = require("express")
 
 const app = express()
 
+app.use((req, res, next) => {
+    console.log("middleware testing")
+    next(); //tells middleware to go to next middleware or route handler
+})
+
 // Getting all the games
 app.get("/api/games", (req, res) => {
     res.status(200).json({
