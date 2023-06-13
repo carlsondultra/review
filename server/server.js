@@ -13,6 +13,16 @@ app.get("/api/games", (req, res) => {
     })
 })
 
+// Getting a single game 
+app.get("/api/games/:id", (req, res) => {
+    console.log(req.params)
+})
+
+// Creating a game
+app.post("/api/games", (req, res) => {
+    console.log(req)
+})
+
 const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
