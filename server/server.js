@@ -1,11 +1,15 @@
 require("dotenv").config();
 const express = require("express")
+const db = require("./db")
 const app = express()
 
 app.use(express.json())
 
 // Getting all the games
-app.get("/api/games", (req, res) => {
+app.get("/api/games", async (req, res) => {
+
+    const results = await db.query("select * from games")
+    console.log(results)
     res.status(200).json({
         status: "success",
         data: {
