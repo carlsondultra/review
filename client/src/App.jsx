@@ -5,7 +5,7 @@ import UpdatePage from './routes/UpdatePage';
 import GameDetailPage from './routes/GameDetailPage';
 
 const App = () => {
-    return <div>
+    return <div class="container">
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home/>}/>
