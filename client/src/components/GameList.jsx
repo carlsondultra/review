@@ -1,6 +1,21 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
+import GameFinder from '../apis/GameFinder'
+import { GamesContext } from '../context/GamesContext'
 
-const GameList = () => {
+const GameList = (props) => {
+   const {games, setGames} = useContext(GamesContext)
+
+    useEffect(() => {
+        //defining function to send API call
+        const fetchData = async () => {
+            try {
+                const response = await GameFinder.get("/") //adding to baseURL
+                setGames(response.data.data.games)
+            } catch(err) {}
+        }
+        fetchData();
+    },[])
+
   return (
     <div className="list-group">
         <table className="table table-hover table-dark">
