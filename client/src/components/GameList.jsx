@@ -1,9 +1,11 @@
 import React, {useEffect, useContext} from 'react'
 import GameFinder from '../apis/GameFinder'
 import { GamesContext } from '../context/GamesContext'
+import { useNavigate } from "react-router-dom"
 
 const GameList = (props) => {
    const {games, setGames} = useContext(GamesContext)
+   const navigate = useNavigate();
 
     useEffect(() => {
         //defining function to send API call
@@ -27,6 +29,10 @@ const GameList = (props) => {
         }
     }
 
+    const handleUpdate = (id) => {
+        navigate(`games/${id}/update`)
+    }
+    
   return (
     <div className="list-group">
         <table className="table table-hover table-dark">
@@ -49,7 +55,7 @@ const GameList = (props) => {
                             <td>{game.location}</td>
                             <td>{"$".repeat(game.price_range)}</td>
                             <td>reviews</td>
-                            <td><button className="btn btn-warning">Update</button></td>
+                            <td><button onClick={() => handleUpdate(game.id)} className="btn btn-warning">Update</button></td>
                             <td><button onClick={() => handleDelete(game.id)} className="btn btn-danger">Delete</button></td>
                         </tr>
                     )
