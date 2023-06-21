@@ -1,9 +1,25 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import GameFinder from '../apis/GameFinder'
+import { GamesContext } from '../context/GamesContext'
 
 const AddGame = () => {
+    const {addGames} = useContext(GamesContext)
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
     const [priceRange, setPriceRange] = useState("Price Range")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault() //prevents from reloading page
+        try {
+            const response = await GameFinder.post("/", {
+                name,
+                location,
+                price_range: priceRange
+            })
+            addGames(response.data.data.game)
+            console.log(response)
+        } catch (err) {}
+    }
   return (
     <div class="container">
         <form action="">
@@ -24,7 +40,7 @@ const AddGame = () => {
                         <option value="5">$$$$$</option>
                     </select>
                 </div>
-                <button className="btn btn-primary">Add to Library</button>
+                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Add to Library</button>
             </div>
         </form>
     </div>
