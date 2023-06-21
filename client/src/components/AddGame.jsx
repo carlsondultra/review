@@ -1,18 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const AddGame = () => {
+    const [name, setName] = useState("")
+    const [location, setLocation] = useState("")
+    const [priceRange, setPriceRange] = useState("Price Range")
   return (
     <div class="container">
         <form action="">
             <div class="row">
                 <div class="col">
-                    <input type="text" className="form-control" placeholder="name"/>
+                    <input value={name} onChange={(e)=>setName(e.target.value)} type="text" className="form-control" placeholder="name"/>
                 </div>
                 <div class="col">
-                    <input type="text" className="form-control" placeholder="location"/>
+                    <input value={location} onChange={(e)=>setLocation(e.target.value)} type="text" className="form-control" placeholder="location"/>
                 </div>
                 <div class="col">
-                    <select className="custom-select my-1 mr-sm-2">
+                    <select value={priceRange} onChange={(e)=>setPriceRange(e.target.value)}className="custom-select my-1 mr-sm-2">
                         <option disabled>Price Range</option>
                         <option value="1">$</option>
                         <option value="2">$$</option>
