@@ -16,6 +16,17 @@ const GameList = (props) => {
         fetchData();
     },[])
 
+    const handleDelete = async (id) => {
+        try{
+            const response = await GameFinder.delete(`/${id}`)
+            setGames(games.filter(game => {
+                return game.id !== id
+            }))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
   return (
     <div className="list-group">
         <table className="table table-hover table-dark">
@@ -39,7 +50,7 @@ const GameList = (props) => {
                             <td>{"$".repeat(game.price_range)}</td>
                             <td>reviews</td>
                             <td><button className="btn btn-warning">Update</button></td>
-                            <td><button className="btn btn-danger">Delete</button></td>
+                            <td><button onClick={() => handleDelete(game.id)} className="btn btn-danger">Delete</button></td>
                         </tr>
                     )
                 })}
