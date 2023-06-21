@@ -30,18 +30,19 @@ const GameList = (props) => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>testgame</td>
-                    <td>testlocation</td>
-                    <td>$</td>
-                    <td>testingrating</td>
-                    <td>
-                        <button className="btn btn-warning">Update</button>
-                    </td>
-                    <td>
-                        <button className="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
+                {/* display only if there are available games */}
+                {games && games.map(game =>{
+                    return (
+                        <tr key={game.id}>
+                            <td>{game.name}</td>
+                            <td>{game.location}</td>
+                            <td>{"$".repeat(game.price_range)}</td>
+                            <td>reviews</td>
+                            <td><button className="btn btn-warning">Update</button></td>
+                            <td><button className="btn btn-danger">Delete</button></td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
         
