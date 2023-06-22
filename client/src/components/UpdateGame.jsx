@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import GameFinder from '../apis/GameFinder'
 
 const UpdateGame = (props) => {
     const {id} = useParams()
+    const navigate = useNavigate();
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
     const [priceRange, setPriceRange] = useState("")
@@ -29,6 +30,7 @@ const UpdateGame = (props) => {
             price_range: priceRange,
         })
         console.log(updatedGame)
+        navigate(`/`)
     }
 
     return (
