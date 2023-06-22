@@ -21,6 +21,16 @@ const UpdateGame = (props) => {
         fetchData()
     }, [])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const updatedGame = await GameFinder.put(`/${id}`, {
+            name, 
+            location,
+            price_range: priceRange,
+        })
+        console.log(updatedGame)
+    }
+
     return (
         <div>
             <form action = "">
@@ -39,7 +49,7 @@ const UpdateGame = (props) => {
                     <input value={priceRange || ''} onChange={(e) => setPriceRange(e.target.value)} id="price_range" className="form-control" type="number" />
                 </div>
 
-                <button className="btn btn-primary">Submit</button>
+                <button type="submit" onClick={handleSubmit} className="btn btn-primary">Submit</button>
             </form>
         </div>
     )
