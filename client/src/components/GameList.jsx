@@ -18,7 +18,8 @@ const GameList = (props) => {
         fetchData();
     },[])
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (e, id) => {
+        e.stopPropagation() // so table row event won't get triggered
         try{
             const response = await GameFinder.delete(`/${id}`)
             setGames(games.filter(game => {
@@ -29,8 +30,13 @@ const GameList = (props) => {
         }
     }
 
-    const handleUpdate = (id) => {
+    const handleUpdate = (e, id) => {
+        e.stopPropagation()
         navigate(`games/${id}/update`)
+    }
+
+    const handleGameSelect = (id) => {
+        navigate(`games/${id}`)
     }
     
   return (
@@ -50,13 +56,13 @@ const GameList = (props) => {
                 {/* display only if there are available games */}
                 {games && games.map(game =>{
                     return (
-                        <tr key={game.id}>
+                        <tr onClick={() => handleGameSelect(game.id)} key={game.id}>
                             <td>{game.name}</td>
                             <td>{game.location}</td>
                             <td>{"$".repeat(game.price_range)}</td>
                             <td>reviews</td>
-                            <td><button onClick={() => handleUpdate(game.id)} className="btn btn-warning">Update</button></td>
-                            <td><button onClick={() => handleDelete(game.id)} className="btn btn-danger">Delete</button></td>
+                            <td><button onClick={(e) => handleUpdate(e, game.id)} className="btn btn-warning">Update</button></td>
+                            <td><button onClick={(e) => handleDelete(e, game.id)} className="btn btn-danger">Delete</button></td>
                         </tr>
                     )
                 })}
