@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { GamesContext } from '../context/GamesContext'
 import GameFinder from '../apis/GameFinder'
+import StarRating from '../components/StarRating'
 
 const GameDetailPage = () => {
   const {id} = useParams()
@@ -21,7 +22,7 @@ const GameDetailPage = () => {
   }, [])
 
   return (
-    <div>{selectedGame && selectedGame.name}</div>
+    <div>{selectedGame && <StarRating rating={3.3}/>}</div>
   )
 }
 
