@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { GamesContext } from '../context/GamesContext'
 import GameFinder from '../apis/GameFinder'
 import StarRating from '../components/StarRating'
+import Reviews from '../components/Reviews'
 
 const GameDetailPage = () => {
   const {id} = useParams()
@@ -22,7 +23,14 @@ const GameDetailPage = () => {
   }, [])
 
   return (
-    <div>{selectedGame && <StarRating rating={3.3}/>}</div>
+    <div>
+      {selectedGame && (
+        <>
+          <div className="mt-3">
+            <Reviews/>
+          </div>
+        </>
+    )}</div>
   )
 }
 
