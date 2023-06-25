@@ -29,11 +29,15 @@ app.get("/api/games/:id", async (req, res) => {
     console.log(req.params.id)
     try {
         // select * from games where id = req.params.id (used for avoiding sql injection)
-        const results = await db.query("select * from games where id = $1", [req.params.id])
+        const game = await db.query("select * from games where id = $1", [req.params.id])
+
+        const reviews = await db.query("select * from reviews where game_id = $1", [req.params.id])
+
         res.status(200).json({
             status: "success",
             data: {
-                game: results.rows,
+                game: game.rows,
+                reviews: reviews.rows
             }
         })
     } catch (err) {
