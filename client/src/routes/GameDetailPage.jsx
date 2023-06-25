@@ -4,6 +4,7 @@ import { GamesContext } from '../context/GamesContext'
 import GameFinder from '../apis/GameFinder'
 import StarRating from '../components/StarRating'
 import Reviews from '../components/Reviews'
+import AddReview from '../components/AddReview'
 
 const GameDetailPage = () => {
   const {id} = useParams()
@@ -13,8 +14,9 @@ const GameDetailPage = () => {
     const fetchData = async () => {
       try {
         const response = await GameFinder.get(`/${id}`)
-        console.log(response.data.data)
-        setSelectedGame(response.data.data.game[0])
+
+
+        setSelectedGame(response.data.data)
       } catch (err) {
         console.log(err)
       }
@@ -22,13 +24,18 @@ const GameDetailPage = () => {
     fetchData()
   }, [])
 
+  // console.log(selectedGame)
+  // console.log(selectedGame.game[0].name)
+
   return (
     <div>
       {selectedGame && (
         <>
+        <h1 className="text-center display-1">{selectedGame.game[0].name}</h1>
           <div className="mt-3">
-            <Reviews/>
+            <Reviews reviews={selectedGame.reviews}/>
           </div>
+          <AddReview />
         </>
     )}</div>
   )

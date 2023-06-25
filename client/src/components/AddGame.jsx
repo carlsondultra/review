@@ -31,7 +31,7 @@ const AddGame = () => {
                     <input value={location} onChange={(e)=>setLocation(e.target.value)} type="text" className="form-control" placeholder="location"/>
                 </div>
                 <div class="col">
-                    <select value={priceRange} onChange={(e)=>setPriceRange(e.target.value)}className="custom-select my-1 mr-sm-2">
+                    <select value={priceRange} onChange={(e)=>setPriceRange(e.target.value)} class="form-select">
                         <option disabled>Price Range</option>
                         <option value="1">$</option>
                         <option value="2">$$</option>
