@@ -94,6 +94,22 @@ app.delete("/api/games/:id", async (req, res) => {
     }
 })
 
+// Adding a review
+app.post("/api/games/:id/addReview", async (req, res) => {
+    try{
+        const newReview = await db.query("INSERT INTO reviews (game_id, name, review, rating) values ($1, $2, $3, $4) returning *;", [req.params.id, 
+        req.body.name, req.body.review, req.body.rating])
+        res.status(201).json({
+            status: 'success',
+            data: {
+                review: newReview.rows[0],
+            }
+        })
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 
 const port = process.env.PORT || 3001;
 
