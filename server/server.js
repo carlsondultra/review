@@ -36,7 +36,7 @@ app.get("/api/games/:id", async (req, res) => {
         res.status(200).json({
             status: "success",
             data: {
-                game: game.rows,
+                game: game.rows[0],
                 reviews: reviews.rows
             }
         })
