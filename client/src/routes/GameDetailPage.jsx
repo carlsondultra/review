@@ -25,13 +25,14 @@ const GameDetailPage = () => {
   }, [])
 
   // console.log(selectedGame)
+  // console.log(selectedGame.game?.name)
   // console.log(selectedGame.game[0].name)
 
   return (
     <div>
       {selectedGame && (
         <>
-        <h1 className="text-center display-1">{selectedGame.game[0].name}</h1>
+        <h1 className="text-center display-1">{selectedGame.game?.name}</h1>
           <div className="mt-3">
             <Reviews reviews={selectedGame.reviews}/>
           </div>
