@@ -11,12 +11,16 @@ app.use(express.json())
 app.get("/api/games", async (req, res) => {
     try{
         const results = await db.query("select * from games")
+        const gameRatingsData = await db.query(
+            "select * from games left join (select game_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by game_id) reviews on games.id = reviews.game_id;"
+        )
+
         console.log(results)
         res.status(200).json({
             status: "success",
-            results: results.rows.length,
+            results: gameRatingsData.rows.length,
             data: {
-                games: results.rows,
+                games: gameRatingsData.rows,
             }
     })
     } catch (err) {
@@ -29,7 +33,7 @@ app.get("/api/games/:id", async (req, res) => {
     console.log(req.params.id)
     try {
         // select * from games where id = req.params.id (used for avoiding sql injection)
-        const game = await db.query("select * from games where id = $1", [req.params.id])
+        const game = await db.query("select * from games left join (select game_id, COUNT(*), TRUNC(AVG(rating),1) as average_rating from reviews group by game_id) reviews on games.id = reviews.game_id where id = $1;", [req.params.id])
 
         const reviews = await db.query("select * from reviews where game_id = $1", [req.params.id])
 

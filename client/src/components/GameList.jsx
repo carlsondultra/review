@@ -2,6 +2,7 @@ import React, {useEffect, useContext} from 'react'
 import GameFinder from '../apis/GameFinder'
 import { GamesContext } from '../context/GamesContext'
 import { useNavigate } from "react-router-dom"
+import StarRating from '../components/StarRating'
 
 const GameList = (props) => {
    const {games, setGames} = useContext(GamesContext)
@@ -38,6 +39,16 @@ const GameList = (props) => {
     const handleGameSelect = (id) => {
         navigate(`games/${id}`)
     }
+
+    const renderRating = (game) => {
+        if(!game.count){
+            return <span className="text-warning">0 reviews</span>
+        }
+        return<>
+            <StarRating rating={game.id}/>
+            <span className="text-warning ml-1">({game.count})</span>
+        </>
+    }
     
   return (
     <div className="list-group">
@@ -60,7 +71,7 @@ const GameList = (props) => {
                             <td>{game.name}</td>
                             <td>{game.location}</td>
                             <td>{"$".repeat(game.price_range)}</td>
-                            <td>reviews</td>
+                            <td>{renderRating(game)}</td>
                             <td><button onClick={(e) => handleUpdate(e, game.id)} className="btn btn-warning">Update</button></td>
                             <td><button onClick={(e) => handleDelete(e, game.id)} className="btn btn-danger">Delete</button></td>
                         </tr>

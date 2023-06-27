@@ -33,8 +33,15 @@ const GameDetailPage = () => {
       {selectedGame && (
         <>
         <h1 className="text-center display-1">{selectedGame.game?.name}</h1>
+        <div className="text-center">
+          <StarRating rating={selectedGame.game?.average_rating} />
+          <span className="text-warning ml-1">
+              {selectedGame.game?.count ? `(${selectedGame.game?.count})` : "(0)"}
+            </span>
+        </div>
           <div className="mt-3">
             <Reviews reviews={selectedGame.reviews}/>
+            
           </div>
           <AddReview />
         </>
