@@ -15,18 +15,16 @@ Node.js - Allows running of Javascript server side.
 ```
 git clone https://github.com/carlsondultra/review.git
 cd review
-npm install
 cd server
+npm install
 npm start
 ```
 On a second terminal,
 ```
+cd review
 cd client
 npm install
 npm start
 ```
-On a third terminal, 
-```
-cd server
-```
-Ensure your Postgres database is running, then edit .env as necessary.
+
+Under the server directory, ensure your Postgres database is running, then edit .env as necessary.
