@@ -18,14 +18,14 @@ npm install
 cd server
 npm start
 ```
-On a seperate terminal,
+On a third terminal,
 ```
 cd client
 npm install
 npm start
 ```
-On a third terminal,
+On a third terminal, 
 ```
-cp sample.env .env
+cd server
 ```
 Ensure your Postgres database is running, then edit .env as necessary.
