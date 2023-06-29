@@ -13,7 +13,8 @@ Node.js - Allows running of Javascript server side.
 # Getting Started
 
 ```
-git clone git@github.com:carlsondultra/review.git
+git clone https://github.com/carlsondultra/review.git
+cd review
 npm install
 cd server
 npm start
