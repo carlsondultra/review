@@ -18,7 +18,7 @@ npm install
 cd server
 npm start
 ```
-On a third terminal,
+On a second terminal,
 ```
 cd client
 npm install
