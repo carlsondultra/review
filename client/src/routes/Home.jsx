@@ -5,7 +5,7 @@ import GameList from '../components/GameList'
 
 const Home = () => {
   return (
-    <div>
+    <div style={{backgroundColor: "lightblue"}}>
       <Header />
       <AddGame />
       <GameList />
