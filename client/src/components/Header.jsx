@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <div>
         <h1 className="font-weight-light display-1 text-center">
-            Game Finder
+            Game Reviews
         </h1>
     </div>
   )
