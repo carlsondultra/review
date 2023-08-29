@@ -45,7 +45,7 @@ const GameList = (props) => {
             return <span className="text-warning">0 reviews</span>
         }
         return<>
-            <StarRating rating={game.id}/>
+            <StarRating rating={game.average_rating}/>
             <span className="text-warning ml-1">({game.count})</span>
         </>
     }
@@ -54,7 +54,7 @@ const GameList = (props) => {
     <div className="list-group">
         <table className="table table-hover table-dark">
             <thead>
-                <tr className="bg-primary">
+            <tr className="bg-primary">
                     <th scope="col">Game</th>
                     <th scope="col">Location</th>
                     <th scope="col">Price Range</th>
